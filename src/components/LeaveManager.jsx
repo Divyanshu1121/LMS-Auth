@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react';
 import { getFire } from '../../firebase';
+import { signOut } from "firebase/auth";
+import { auth } from "../../firebase";
 import {
     getDocs,
     collection,
@@ -13,7 +15,7 @@ import LeaveForm from './LeaveForm';
 import LeaveTable from './LeaveTable';
 import '../App.css';
 
-function LeaveManager() {
+function LeaveManager({ userRole }) {
     let [leave, setLeave] = useState(JSON.parse(localStorage.getItem("leaveDraft")) || {});
     let [leaveList, setLeaveList] = useState([]);
     let [leaveId, setLeaveId] = useState(0);
@@ -128,6 +130,10 @@ function LeaveManager() {
 
     return (
         <div className="leave-container">
+            <div className="logout-section">
+                <strong>Logged in as: {userRole}</strong>
+                <button onClick={() => signOut(auth)}>Logout</button>
+            </div>
             <div className="theme-toggle">
                 <button onClick={toggleTheme} className="theme-btn" title="Toggle Theme">
                     {theme === "dark" ? "🌞 Light Mode" : "🌙 Dark Mode"}
@@ -175,6 +181,7 @@ function LeaveManager() {
                 deleteLeave={deleteLeave}
                 editLeave={editLeave}
                 updateStatus={updateStatus}
+                userRole={userRole}
             />
 
             <div className="pagination">

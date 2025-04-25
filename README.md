@@ -1,124 +1,172 @@
-# 🚀 Leave Management System (LMS)
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Leave Management System</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 40px;
+      background: #f9f9f9;
+      color: #333;
+    }
+    h1, h2, h3 {
+      color: #1e90ff;
+    }
+    code {
+      background: #eee;
+      padding: 2px 6px;
+      border-radius: 4px;
+    }
+    pre {
+      background: #f4f4f4;
+      padding: 10px;
+      overflow-x: auto;
+      border-left: 3px solid #1e90ff;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 1em;
+    }
+    table, th, td {
+      border: 1px solid #ccc;
+    }
+    th, td {
+      padding: 10px;
+      text-align: left;
+    }
+    ul {
+      margin-left: 20px;
+    }
+  </style>
+</head>
+<body>
 
-A smart, modern, and intuitive **Leave Management System** built using **React.js** and **Firebase**. Designed for dynamic teams, educational institutions, or HR dashboards, this app offers seamless management of leave requests with real-time operations and a highly responsive UI.
+  <h1>🚀 Leave Management System</h1>
 
----
+  <p>A modern, responsive Leave Management System built with <strong>React</strong> and <strong>Firebase</strong>. This app supports secure <strong>authentication</strong>, <strong>role-based access (admin/employee)</strong>, <strong>CRUD operations</strong>, <strong>leave filtering/sorting</strong>, and <strong>theme switching</strong>.</p>
 
-## 🌟 Key Features
+  <h2>📌 Features</h2>
 
-✅ **Leave Application & Form Validation**  
-- A clean form with input validations and error handling.  
-- Automatically limits reason input to 100 characters and shows a live character count.  
-- Prevents form submission if required fields are empty.  
+  <h3>✅ Core Functionalities</h3>
+  <ul>
+    <li>Apply, Edit, and Delete leave requests</li>
+    <li>Filter leaves by month, name, or reason</li>
+    <li>Sort leaves by name, date, or status</li>
+    <li>Paginated table view of leave requests</li>
+  </ul>
 
-🔄 **Smart CRUD Operations**  
-- Easily Apply, Update, and Delete leave applications.  
-- All actions are synced with Firebase Firestore in real-time.  
+  <h3>🔐 Authentication</h3>
+  <ul>
+    <li>Email & Password login/signup (via Firebase)</li>
+    <li>Persistent login using Firebase Auth state</li>
+    <li>Secure dashboard access (unauthenticated users are redirected)</li>
+  </ul>
 
-📅 **Filter, Search & Sort**  
-- Filter leave entries by month.  
-- Search instantly by employee name or reason.  
-- Sort leaves by Name, Date, or Status for smarter navigation.  
+  <h3>🔒 Role-Based Access</h3>
+  <ul>
+    <li><strong>Admin</strong>: View all requests, Approve/Reject</li>
+    <li><strong>Employee</strong>: Apply/Edit/Delete personal leave only</li>
+  </ul>
 
-🎨 **Light & Dark Mode**  
-- Fully implemented theme toggle (🌙/🌞).  
-- Theme preference is saved using localStorage and persists across sessions.  
+  <h3>🌗 Theming</h3>
+  <ul>
+    <li>Toggle between Light/Dark modes</li>
+    <li>Theme preference saved in localStorage</li>
+  </ul>
 
-📦 **LocalStorage Enhancements**  
-- Saves your in-progress leave form automatically.  
-- Never lose form data — even if the page is accidentally refreshed!  
+  <h2>🛠️ Tech Stack</h2>
+  <table>
+    <tr><th>Tech</th><th>Description</th></tr>
+    <tr><td>React</td><td>Frontend framework</td></tr>
+    <tr><td>Firebase</td><td>Authentication & Firestore Database</td></tr>
+    <tr><td>React Router</td><td>Navigation and route protection</td></tr>
+    <tr><td>React Toastify</td><td>Feedback alerts</td></tr>
+    <tr><td>LocalStorage</td><td>Store theme & draft leave data</td></tr>
+  </table>
 
-🔔 **Toast Notifications**  
-- Interactive and user-friendly notifications using React Toastify.  
-- For leave submission, approvals, rejections, and deletions.  
+  <h2>📁 Folder Structure</h2>
+  <pre>
+src/
+│
+├── components/
+│   ├── LeaveManager.jsx
+│   ├── LeaveForm.jsx
+│   ├── LeaveTable.jsx
+│   ├── Login.jsx
+│   └── Signup.jsx
+│
+├── firebase.jsx
+├── App.jsx
+└── App.css
+  </pre>
 
-📊 **Paginated Leave Records**  
-- Clean and simple pagination system.  
-- Displays 3 records per page with dynamic navigation.  
+  <h2>⚙️ Installation & Setup</h2>
 
----
+  <ol>
+    <li><strong>Clone the Repo</strong>
+      <pre>git clone https://github.com/Divyanshu1121/LMS-Auth.git
+cd LMS-Auth</pre>
+    </li>
 
-## 🛠️ Tech Stack Used
+    <li><strong>Install Dependencies</strong>
+      <pre>npm install</pre>
+    </li>
 
-- **React.js** – Frontend and UI framework  
-- **Firebase Firestore** – Real-time cloud database  
-- **React Toastify** – Toast notifications  
-- **CSS3** – Fully customized responsive design  
-- **LocalStorage** – Persistent theme and form state  
+    <li><strong>Set Up Firebase</strong>
+      <ul>
+        <li>Create project in <a href="https://console.firebase.google.com" target="_blank">Firebase Console</a></li>
+        <li>Enable <strong>Email/Password</strong> sign-in</li>
+        <li>Create a Firestore database</li>
+        <li>Paste config into <code>firebase.jsx</code>:</li>
+      </ul>
+      <pre>
+const firebaseConfig = {
+  apiKey: "YOUR_API_KEY",
+  authDomain: "your-app.firebaseapp.com",
+  projectId: "your-app",
+  storageBucket: "your-app.appspot.com",
+  messagingSenderId: "SENDER_ID",
+  appId: "APP_ID"
+};
+      </pre>
+    </li>
 
----
+    <li><strong>Run the App</strong>
+      <pre>npm run dev</pre>
+    </li>
+  </ol>
 
-## 📂 Folder Structure
+  <h2>🔐 How Authentication Works</h2>
+  <ul>
+    <li>Users signup and select a role (<code>admin</code> or <code>employee</code>)</li>
+    <li>Role is stored in Firestore in a <code>Users</code> collection</li>
+    <li>On login, role is fetched and passed to the dashboard</li>
+    <li>Routes are protected using <code>React Router</code> and conditional rendering</li>
+  </ul>
 
-src/  
-├── components/  
-│   ├── LeaveForm.jsx – Input form for applying/updating leave  
-│   ├── LeaveTable.jsx – Displays paginated leave requests  
-│   └── LeaveManager.jsx – Manages all logic, filtering, sorting, and CRUD  
-├── App.jsx – Renders LeaveManager  
-├── App.css – Main styling including dark/light themes  
-└── main.jsx – Application entry point  
+  <h2>🔄 Example Accounts (For Testing)</h2>
+  <table>
+    <tr><th>Email</th><th>Password</th><th>Role</th></tr>
+    <tr><td>j@gmail.com</td><td>100604</td><td>admin</td></tr>
+    <tr><td>divu114@gmail.com</td><td>110604</td><td>employee</td></tr>
+  </table>
 
----
+  <h2>💡 Future Enhancements</h2>
+  <ul>
+    <li>Email notifications for leave status updates</li>
+    <li>Analytics dashboard for admins</li>
+    <li>Super admin user with user/role management</li>
+    <li>CSV/PDF export for leave reports</li>
+  </ul>
 
-## 🔧 How to Run This Project Locally
+  <h2>🙌 Credits</h2>
+  <p>Made with ❤️ using React + Firebase<br>
+     Designed and developed by <strong>Divyanshu .M. Patel</strong></p>
 
-1. **Clone the Repository**
+  <h2>📄 License</h2>
+  <p>This project is licensed under the <strong>MIT License</strong></p>
 
-```
-git clone https://github.com/your-username/leave-management-system.git
-cd leave-management-system
-```
-
-2. **Install Dependencies**
-
-```
-npm install
-```
-
-3. **Set Up Firebase**
-
-- Go to https://console.firebase.google.com  
-- Create a new project and enable Firestore Database  
-- Replace `firebase.js` with your Firebase config  
-- Create a collection named `LeaveRequests` in Firestore  
-
-4. **Run the App**
-
-```
-npm run dev
-```
-
----
-
-## 🚀 What Makes This App Special?
-
-- Real-time sync with Firebase Firestore  
-- Persistent theme and form drafts using LocalStorage  
-- Search, filter, sort, and paginate data with ease  
-- Clean modular code structure  
-- Perfect for HR, Admins, or developer portfolios  
-
----
-
-## 🙌 Ideal For
-
-- HR & Admin Dashboards  
-- Frontend + Firebase CRUD demo  
-- Academic or portfolio projects  
-- Beginners learning full-stack development  
-
----
-
-## 🧡 Support & Contributions
-
-If you liked this project, consider giving it a ⭐️ on GitHub.  
-Issues, feedback, and pull requests are warmly welcome!
-
----
-
-## 📄 License
-
-This project is open-source and available under the MIT License.
-
----
+</body>
+</html>
